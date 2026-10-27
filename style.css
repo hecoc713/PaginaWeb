@@ -1,0 +1,218 @@
+/* ---------- Variables y base ---------- */
+:root {
+  --color-fondo: #f4f4f248;
+  --color-texto: #111111;
+  --color-borde: #dcdcd8;
+  --fuente-titulo: "Anton", "Bebas Neue", Impact, sans-serif;
+  --fuente-texto: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --alto-header: 94px;
+  --margen-lateral: 64px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fuente-texto);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.5;
+  /* Espacio para que el header fijo no tape el contenido */
+  padding-top: var(--alto-header);
+}
+
+/* ---------- Header fijo ---------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--alto-header);
+  background: var(--color-fondo);
+}
+
+.header-contenido {
+  display: flex;
+  justify-content: space-between; /* nombre a la izquierda, menú a la derecha */
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--margen-lateral);
+}
+
+/* ---------- Nombre de la página ---------- */
+.logo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.9rem;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+/* ---------- Menú (vista de escritorio) ---------- */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 33px;
+}
+
+.menu-enlace {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+/* Subrayado que aparece al pasar el mouse */
+.menu-enlace::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: var(--color-texto);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.menu-enlace:hover::after,
+.menu-enlace:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Botón hamburguesa (oculto en escritorio) ---------- */
+.btn-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.barra {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-texto);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+
+.btn-menu.abierto .barra:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.btn-menu.abierto .barra:nth-child(2) {
+  opacity: 0;
+}
+
+.btn-menu.abierto .barra:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+@media (max-width: 1024px) {
+  :root {
+    --margen-lateral: 32px;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .menu {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --alto-header: 72px;
+    --margen-lateral: 20px;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .btn-menu {
+    display: flex;
+  }
+
+  .menu {
+    position: absolute;
+    top: var(--alto-header);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 8px var(--margen-lateral) 20px;
+    background: var(--color-fondo);
+    border-bottom: 1px solid var(--color-borde);
+
+    /* Oculto por defecto */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+
+  .menu.abierto {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .menu-enlace {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-borde);
+    font-size: 1.1rem;
+  }
+
+  .menu-enlace:last-child {
+    border-bottom: none;
+  }
+
+  /* En teléfono no hace falta el subrayado animado */
+  .menu-enlace::after {
+    display: none;
+  }
+}
+
+/* ---------- Contenido de prueba ---------- */
+.seccion {
+  min-height: 100vh;
+  padding: 48px var(--margen-lateral);
+  /* Para que el header no tape el título al ir a una sección */
+  scroll-margin-top: var(--alto-header);
+}
+
+.seccion:nth-child(even) {
+  background: #ffffff;
+}
+
+.seccion h2 {
+  margin-bottom: 8px;
+  font-family: var(--fuente-titulo);
+  font-weight: 400;
+  text-transform: uppercase;
+}

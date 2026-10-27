@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Tienda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="header-contenido">
+
+      <a href="#inicio" class="logo">Mi Tienda</a>
+
+      <button
+        id="btn-menu"
+        class="btn-menu"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="menu"
+      >
+        <span class="barra"></span>
+        <span class="barra"></span>
+        <span class="barra"></span>
+      </button>
+
+      <nav id="menu" class="menu" aria-label="Navegación principal">
+        <a href="#tienda" class="menu-enlace">Tienda</a>
+        <a href="#acerca" class="menu-enlace">Acerca de</a>
+        <a href="#carrito" class="menu-enlace">Carrito (<span id="contador">0</span>)</a>
+      </nav>
+
+    </div>
+  </header>
+  <main>
+    <section id="inicio" class="seccion">
+      <h2>Inicio</h2>
+      <p>Haz scroll hacia abajo: el header se queda fijo arriba.</p>
+    </section>
+
+    <section id="tienda" class="seccion">
+      <h2>Tienda</h2>
+      <p>Aquí irán todos los productos.</p>
+    </section>
+
+    <section id="acerca" class="seccion">
+      <h2>Acerca de</h2>
+      <p>Aquí irá la información de la empresa.</p>
+    </section>
+
+    <section id="carrito" class="seccion">
+      <h2>Carrito</h2>
+      <p>Aquí irán los productos que agregues.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
