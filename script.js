@@ -190,6 +190,15 @@ function inicializarHeader() {
   const formBuscador = document.getElementById("form-buscador");
 
   if (buscadorWrapper && buscadorInput) {
+    // Renderizar categorías dinámicamente en el dropdown
+    const listaChips = buscadorWrapper.querySelector(".categorias-lista-chips");
+    if (listaChips && typeof CATEGORIAS !== "undefined") {
+      listaChips.innerHTML = CATEGORIAS.map(cat => {
+        const icono = (typeof ICONOS_CATEGORIAS !== "undefined" && ICONOS_CATEGORIAS[cat]) ? `${ICONOS_CATEGORIAS[cat]} ` : "";
+        return `<a href="tienda.html?categoria=${encodeURIComponent(cat)}" class="categoria-chip">${icono}${cat}</a>`;
+      }).join("");
+    }
+
     // Al hacer clic o focus en el input, expandir y mostrar categorías
     buscadorInput.addEventListener("focus", () => {
       buscadorWrapper.classList.add("expandido", "mostrar-dropdown");
